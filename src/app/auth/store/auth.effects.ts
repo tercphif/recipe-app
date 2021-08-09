@@ -22,7 +22,18 @@ export interface AuthResponseData {
 export class AuthEffects {
   @Effect()
   authSignup = this.actions$.pipe(
-    ofType(AuthActions.SIGNUP_START)
+    ofType(AuthActions.SIGNUP_START),
+    switchMap((signupAction: AuthActions.SignupStart) => {
+      return this.http
+      .post<AuthResponseData>(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDQwLIWA7LFHgPKtzRG0jjOJJQf7Wp-ATQ',
+        {
+          email: signupAction.payload.email,
+          password: signupAction.payload.password,
+          returnSecureToken: true
+        }
+        )
+    })
   );
 
   @Effect()
