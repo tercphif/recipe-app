@@ -8,6 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharingModule } from './sharing/sharing.module';
 import { CoreModule } from './core.module';
 import { LoggingService } from './logging.service';
+import { StoreModule } from '@ngrx/store';
+import * as fromApp from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/store/auth.effects';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,8 @@ import { LoggingService } from './logging.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([AuthEffects]),
     SharingModule,
     CoreModule
   ],

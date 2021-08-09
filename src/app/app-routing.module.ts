@@ -13,7 +13,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./Auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   }
 ];
 
